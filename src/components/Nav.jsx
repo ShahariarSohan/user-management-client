@@ -25,7 +25,7 @@ const Nav = () => {
           isActive ? "underline text-red-600 font-bold" : "font-bold"
         }
       >
-        Single Coffees
+        Brands
       </NavLink>
     </div>
   );
