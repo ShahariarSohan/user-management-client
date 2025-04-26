@@ -1,6 +1,9 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+import toast from "react-hot-toast";
 const Nav = () => {
+  const { user, logOut } = useContext(AuthContext);
   const links = (
     <div className="flex flex-col md:flex-row gap-5">
       <NavLink
@@ -12,23 +15,33 @@ const Nav = () => {
         Home
       </NavLink>
       <NavLink
-        to="/coffees"
+        to="/addCoffees"
         className={({ isActive }) =>
           isActive ? "underline text-red-600 font-bold" : "font-bold"
         }
       >
-        Coffees
+        AddCoffees
       </NavLink>
+
       <NavLink
-        to=""
+        to="/personalCoffees"
         className={({ isActive }) =>
           isActive ? "underline text-red-600 font-bold" : "font-bold"
         }
       >
-        Brands
+        Personal Coffees
       </NavLink>
     </div>
   );
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("LogOut Successfully");
+      })
+      .catch((error) => {
+        toast.error("LogOut failed for", error.message);
+      });
+  };
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -63,7 +76,18 @@ const Nav = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Login</a>
+        {user ? (
+          <div className="flex items-center gap-3 font-bold">
+            <p>{user?.email ? user.email : ""}</p>
+            <button onClick={handleLogOut} className="btn btn-neutral">
+              LogOut
+            </button>
+          </div>
+        ) : (
+          <Link to="/login" className="btn btn-neutral">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

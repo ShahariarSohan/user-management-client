@@ -1,8 +1,11 @@
 import React from "react";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const AddCoffeeForm = () => {
-  const handleAddCoffee = (e) => {
+const UpdateCoffee = () => {
+  const loadedCoffee = useLoaderData();
+  console.log(loadedCoffee);
+  const handleUpdateCoffee = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const chef = e.target.chef.value;
@@ -22,8 +25,8 @@ const AddCoffeeForm = () => {
       details,
     };
 
-    fetch("http://localhost:5000/coffees", {
-      method: "POST",
+    fetch(`http://localhost:5000/coffees/${loadedCoffee._id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
@@ -31,10 +34,11 @@ const AddCoffeeForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.acknowledged) {
+        console.log(data);
+        if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Good job!",
-            text: "Coffee Added Successfully",
+            text: "Coffee Updated Successfully",
             icon: "success",
           });
         }
@@ -42,9 +46,9 @@ const AddCoffeeForm = () => {
   };
   return (
     <div>
-      <h1 className="text-4xl font-bold text-center">Add A Coffee</h1>
+      <h1 className="text-4xl font-bold text-center">Update A Coffee</h1>
       <div className="container mx-auto">
-        <form onSubmit={handleAddCoffee}>
+        <form onSubmit={handleUpdateCoffee}>
           <div className="w-full space-y-10 my-10 bg-gray-300 rounded-md p-10  ">
             <div className="flex gap-3">
               <input
@@ -106,7 +110,7 @@ const AddCoffeeForm = () => {
             </div>
             <div>
               <button type="submit" className="btn w-full bg-blue-400">
-                Add Coffee
+                Update Coffee
               </button>
             </div>
           </div>
@@ -116,4 +120,4 @@ const AddCoffeeForm = () => {
   );
 };
 
-export default AddCoffeeForm;
+export default UpdateCoffee;

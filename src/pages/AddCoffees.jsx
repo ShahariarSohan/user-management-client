@@ -2,7 +2,7 @@ import React from "react";
 
 import AddCoffeeForm from "../components/AddCoffeeForm";
 
-const Home = () => {
+const AddCoffees = () => {
   return (
     <div>
       <AddCoffeeForm></AddCoffeeForm>
@@ -10,4 +10,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default AddCoffees;
