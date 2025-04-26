@@ -9,7 +9,6 @@ const Coffee = () => {
         <div>
           <img src={coffee.photoURL} alt="" />
         </div>
-
         <div className="text-xl font-bold">
           <p>{coffee.name}</p>
           <p className="text-red-500">{coffee.category}</p>

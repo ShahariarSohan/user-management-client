@@ -16,13 +16,14 @@ const router = createBrowserRouter([
     errorElement: <Error></Error>,
     children: [
       {
-        path: "/",
+        path: "/coffees/:email",
         element: (
           <PrivateRoute>
             <Coffees></Coffees>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/coffees"),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/coffees/${params.email}`),
       },
       {
         path: "/addCoffees",
@@ -33,14 +34,14 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/coffees/:id",
+        path: "/coffee/:id",
         element: (
           <PrivateRoute>
             <Coffee></Coffee>
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/coffees/${params.id}`),
+          fetch(`http://localhost:5000/coffee/${params.id}`),
       },
       {
         path: "/coffees/update/:id",
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/coffees/${params.id}`),
+          fetch(`http://localhost:5000/coffee/${params.id}`),
       },
       {
         path: "/login",

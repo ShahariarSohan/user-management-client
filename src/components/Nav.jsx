@@ -4,10 +4,11 @@ import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
 const Nav = () => {
   const { user, logOut } = useContext(AuthContext);
-  const links = (
+
+  const links = user ? (
     <div className="flex flex-col md:flex-row gap-5">
       <NavLink
-        to="/"
+        to={`/coffees/${user.email}`}
         className={({ isActive }) =>
           isActive ? "underline text-red-600 font-bold" : "font-bold"
         }
@@ -23,6 +24,8 @@ const Nav = () => {
         AddCoffees
       </NavLink>
     </div>
+  ) : (
+    ""
   );
   const handleLogOut = () => {
     logOut()
@@ -61,7 +64,7 @@ const Nav = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">Coffee Shop</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>

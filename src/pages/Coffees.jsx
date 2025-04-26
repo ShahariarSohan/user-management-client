@@ -57,7 +57,7 @@ const Coffees = () => {
                 <p>{coffee.supplier}</p>
               </div>
               <div className=" grid gap-2 text-2xl text-red-500 font-bold">
-                <Link to={`/coffees/${coffee._id}`} type="button">
+                <Link to={`/coffee/${coffee._id}`} type="button">
                   <FaEye />
                 </Link>
                 <Link to={`/coffees/update/${coffee._id}`} type="button">
