@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../providers/AuthProvider";
 
 const UpdateCoffee = () => {
+  const { user } = useContext(AuthContext);
+  const { email } = user;
   const loadedCoffee = useLoaderData();
-  console.log(loadedCoffee);
   const handleUpdateCoffee = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -23,6 +25,7 @@ const UpdateCoffee = () => {
       category,
       photoURL,
       details,
+      email,
     };
 
     fetch(`http://localhost:5000/coffees/${loadedCoffee._id}`, {
@@ -34,7 +37,6 @@ const UpdateCoffee = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Good job!",

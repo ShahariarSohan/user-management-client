@@ -8,7 +8,6 @@ import UpdateCoffee from "../components/UpdateCoffee";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "../privateRoutes/PrivateRoute";
-import PersonalCoffees from "../pages/PersonalCoffees";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +17,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Coffees></Coffees>,
+        element: (
+          <PrivateRoute>
+            <Coffees></Coffees>
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/coffees"),
       },
       {
@@ -56,14 +59,6 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
-      },
-      {
-        path: "/personalCoffees",
-        element: (
-          <PrivateRoute>
-            <PersonalCoffees></PersonalCoffees>
-          </PrivateRoute>
-        ),
       },
     ],
   },

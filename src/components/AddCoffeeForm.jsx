@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../providers/AuthProvider";
 
 const AddCoffeeForm = () => {
+  const { user } = useContext(AuthContext);
+  const { email } = user;
+
   const handleAddCoffee = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -20,6 +24,7 @@ const AddCoffeeForm = () => {
       category,
       photoURL,
       details,
+      email,
     };
 
     fetch("http://localhost:5000/coffees", {

@@ -12,7 +12,7 @@ const Nav = () => {
           isActive ? "underline text-red-600 font-bold" : "font-bold"
         }
       >
-        Home
+        My coffees
       </NavLink>
       <NavLink
         to="/addCoffees"
@@ -21,15 +21,6 @@ const Nav = () => {
         }
       >
         AddCoffees
-      </NavLink>
-
-      <NavLink
-        to="/personalCoffees"
-        className={({ isActive }) =>
-          isActive ? "underline text-red-600 font-bold" : "font-bold"
-        }
-      >
-        Personal Coffees
       </NavLink>
     </div>
   );
