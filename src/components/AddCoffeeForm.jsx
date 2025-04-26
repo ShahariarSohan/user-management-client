@@ -27,7 +27,7 @@ const AddCoffeeForm = () => {
       email,
     };
 
-    fetch("http://localhost:5000/coffees", {
+    fetch("https://user-management-server-seven-zeta.vercel.app/coffees", {
       method: "POST",
       headers: {
         "content-type": "application/json",

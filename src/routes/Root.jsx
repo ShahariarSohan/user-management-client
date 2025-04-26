@@ -23,7 +23,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/coffees/${params.email}`),
+          fetch(
+            `https://user-management-server-seven-zeta.vercel.app/coffees/${params.email}`
+          ),
       },
       {
         path: "/addCoffees",
@@ -41,7 +43,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/coffee/${params.id}`),
+          fetch(
+            `https://user-management-server-seven-zeta.vercel.app/coffee/${params.id}`
+          ),
       },
       {
         path: "/coffees/update/:id",
@@ -51,7 +55,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/coffee/${params.id}`),
+          fetch(
+            `https://user-management-server-seven-zeta.vercel.app/coffee/${params.id}`
+          ),
       },
       {
         path: "/login",

@@ -28,13 +28,16 @@ const UpdateCoffee = () => {
       email,
     };
 
-    fetch(`http://localhost:5000/coffee/${loadedCoffee._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(coffee),
-    })
+    fetch(
+      `https://user-management-server-seven-zeta.vercel.app/coffee/${loadedCoffee._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(coffee),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
